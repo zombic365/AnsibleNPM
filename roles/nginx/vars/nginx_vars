@@ -1,0 +1,7 @@
+pcre_ver: 8.43
+pcre_url: "https://ftp.pcre.org/pub/pcre/pcre-8.43.tar.gz"
+zlib_ver: 1.2.11
+nginx_ver 1.17.1
+
+nginx_config_file: nginx.conf.j2
+nginx_svr_name: tkali.server.com

@@ -1,0 +1,12 @@
+[Unit]
+Description=MySQL Server
+After=network.target
+After=syslog.target
+
+[Service]
+Type= forking
+ExecStart = {{ MYSQL_LIB_PATH }}/mysql start
+ExecStop = {{ MYSQL_LIB_PATH }}/mysql stop
+
+[Install]
+WantedBy=multi-user.target

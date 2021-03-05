@@ -1,0 +1,7 @@
+#!/bin/bash
+
+./configure \
+--prefix={{ app_dir }}/nginx-{{ nginx_ver }} \
+--with-pcre=../pcre-* \
+--with-zlib=../zlib-* \
+--with-http_ssl_module

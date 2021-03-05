@@ -1,0 +1,84 @@
+---
+# - name: Create app user
+#   user:
+#     name: "{{ MYSQL_USER }}"
+#     shell: "{{ MYSQL_SHELL }}"
+#     state: present
+#   become: yes
+
+# - name: 1.Clear mysql config file dirs
+#   file:
+#     path: "{{ item }}"
+#     state: absent
+#   with_items: "{{ MYSQL_CLEAR_PATH_LIST }}"
+
+# - name: 2.Create mysql dir
+#   file:
+#     path: "{{ item }}"
+#     state: directory
+#     owner: "{{ APP_USER }}"
+#     group: "{{ APP_USER }}"
+#   with_items:
+#     - "{{ MYSQL_PATH }}"
+#     - "{{ MYSQL_DATA_PATH }}"
+#     - "{{ MYSQL_LOG_PATH }}"
+#     - "{{ MYSQL_PS_PATH }}"
+
+# - name: 3.Create mysql config file
+#   template:
+#     src: ../templates/my.cnf.j2
+#     dest: "{{ MYSQL_PATH }}/my.cnf"
+#     owner: "{{ APP_USER }}"
+#     group: "{{ APP_USER }}"
+#   become_user: "{{ APP_USER }}"
+
+# - name: 3-1.Link my.cnf
+#   file:
+#     src: '{{ MYSQL_PATH }}/my.cnf'
+#     dest: '/etc/my.cnf'
+#     state: link
+
+# - name: 4.Download mysql compressed tar file
+#   get_url:
+#     url: "{{ MYSQL_COMPRES_URL }}"
+#     dest: "{{ APP_DIR_PATH }}/mysql-5.7.32.tar.gz"
+#   become_user: "{{ APP_USER }}"
+  
+# - name: 4-1.Unarchive mysql
+#   unarchive:
+#     src: "{{ APP_DIR_PATH }}/mysql-5.7.32.tar.gz"
+#     dest: "{{ MYSQL_PATH }}"
+#     remote_src: yes #hosts서버에 파일을 다운 받았으니, 압축 해제도 해당 파일에서 실행
+#     extra_opts: [--strip-components=1] #해당 디렉터리 밑에 바로 압축해제
+#   become_user: "{{ APP_USER }}"
+
+# - name: 5.Link mysql binanry
+#   file:
+#     src: '{{ MYSQL_PATH }}/bin'
+#     dest: "{{ MYSQL_LIB_PATH }}"
+#     state: link
+
+# - name: 6.Create mysql service daemon file
+#   template:
+#     src: ../templates/mysql.service.j2
+#     dest: "{{ MYSQL_SERVICE_PATH }}/mysql.service"
+#     # owner: "{{ APP_USER }}"
+#     # group: "{{ APP_USER }}"
+#     mode: 0644
+
+# - name: 7.Systemd daemon reload
+#   systemd: daemon_reload=yes
+
+# - name: 8.DB Init start
+#   template:
+#     src: ../templates/mysql_init.sh.j2
+#     dest: "{{ MYSQL_PATH }}/mysql_init.sh"
+#     owner: "{{ APP_USER }}"
+#     group: "{{ APP_USER }}"
+#     mode: 0744
+
+- name: 9.Execute the script
+  shell: ".{{ MYSQL_PATH }}/mysql_init.sh"
+  # register: scroutput
+
+# - debug: var=scroutput.stdout_lines

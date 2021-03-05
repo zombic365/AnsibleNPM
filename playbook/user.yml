@@ -1,0 +1,13 @@
+---
+- hosts: pingtarget
+  gather_facts: yes
+  become: yes
+  
+  vars_files:
+    - ../group_vars/common_vars.yml
+
+  roles:
+    - role: ../roles/ping
+    # - role: ../roles/testpkg
+    - role: ../roles/user
+    - role: ../roles/mysql

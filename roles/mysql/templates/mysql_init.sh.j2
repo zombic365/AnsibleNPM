@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# {{ MYSQL_LIB_PATH }}/mysqld --initialize --user={{ APP_USER }}
+####비밀번호 없이 DB초기화
+# {{ MYSQL_LIB_PATH }}/mysqld --user=app --defaults-file=/etc/my.cnf -–initialize-insecure --explicit_defaults_for_timestamp
+{{ MYSQL_LIB_PATH }}/mysqld --user=app  --defaults-file=/etc/my.cnf -–initialize-insecure --basedir={{ MYSQL_PATH }} --datadir={{ MYSQL_DATA_PATH}} --explicit_defaults_for_timestamp
+{{ MYSQL_LIB_PATH }}/mysql_ssl_rsa_setup
+{{ MYSQL_LIB_PATH }}/mysqld_safe --user={{ APP_USER }} &

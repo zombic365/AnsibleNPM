@@ -1,0 +1,15 @@
+---
+- name: Create app user
+  user:
+    name: "{{ APP_USER }}"
+    password: "{{ APP_PASS | password_hash('sha512') }}"
+    shell: "{{ APP_SHELL }}"
+    state: present
+  become: yes
+
+- name: Create application dir
+  file:
+    path: "{{ APP_DIR_PATH }}"
+    state: directory
+    mode: 0777
+  become: yes

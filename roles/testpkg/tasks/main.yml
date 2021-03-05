@@ -1,0 +1,10 @@
+---
+- name: Checking pkg is installed mysql
+  apt:
+    name: "{{ item }}"
+    state: absent
+    purge: yes
+  with_items: "{{ CHECK_PKG_LIST }}"
+  become: yes
+
+##kali linux 패키지 repo가 http -> https로 가야한다. 

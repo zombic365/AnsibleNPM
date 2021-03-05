@@ -1,0 +1,4 @@
+APP_USER: app
+APP_PASS: app.123
+APP_SHELL: /usr/sbin/nolgin
+APP_DIR_PATH: /apps

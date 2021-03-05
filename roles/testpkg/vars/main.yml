@@ -1,0 +1,1 @@
+CHECK_PKG_LIST: { 'mariadb-server', 'mariadb-common', 'mysql-server', 'mysql-common' }

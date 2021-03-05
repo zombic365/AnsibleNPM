@@ -1,0 +1,19 @@
+---
+  - name: install nginx
+    tags: install
+    block:
+      - name: install essential pkg
+        apt:
+          name: "{{ item }}"
+          state: present
+        with_itmes:
+          - bulid-essential
+          - libssl-dev
+          - openssl
+      - name: mkdir temp 
+        file:
+          path: "{{ temp_dir }}"
+          state: directory
+      - name: download pcre
+        get_url:
+          url: "{{ pcre_ver }}"

@@ -1,0 +1,16 @@
+MYSQL_COMPRES_URL: 'https://downloads.mysql.com/archives/get/p/23/file/mysql-5.7.32-linux-glibc2.12-x86_64.tar.gz'
+
+MYSQL_CLEAR_PATH_LIST: { '/var/log/mysql','/var/log/mysql.*','/var/lib/mysql','/etc/mysql' }
+
+MYSQL_USER: app
+MYSQL_SHELL: /usr/sbin/nologin
+
+MYSQL_PATH: /apps/mysql
+MYSQL_DATA_PATH: /apps_data/mysql_data
+
+MYSQL_LOG_PATH: /apps/mysql/log
+MYSQL_PS_PATH: /apps/mysql/tmp
+
+MYSQL_LIB_PATH: /usr/local/mysql
+MYSQL_SERVICE_PATH: /usr/lib/systemd/user
+
